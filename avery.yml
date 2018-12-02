@@ -1,0 +1,21 @@
+Avery5160:
+  paper_size: LETTER
+  top_margin: 36
+  bottom_margin: 36
+  left_margin: 15.822
+  right_margin: 15.822
+  columns: 3
+  rows: 10
+  column_gutter: 15
+  row_gutter: 0
+
+Avery8167:
+  paper_size: LETTER
+  top_margin: 36
+  bottom_margin: 36
+  left_margin: 7.911
+  right_margin: 7.911
+  columns: 4
+  rows: 20
+  column_gutter: 5
+  row_gutter: 0
