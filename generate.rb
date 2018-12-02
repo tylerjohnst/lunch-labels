@@ -22,7 +22,6 @@ end.flatten(1)
 
 Prawn::Labels.generate(File.expand_path("~/Desktop/food.pdf"), $food, type: 'Avery5160') do |pdf, row|
   name, carbs, protein, fat, calories = row
-  pdf.stroke_bounds
   pdf.move_down 10
   pdf.font File.join(__dir__, '/SignPainter.ttf') do
     pdf.text "Low Carb Lunch Lady", align: :center, size: 20
@@ -39,10 +38,9 @@ end
 
 $customers = $service.get_spreadsheet_values(SHEET_ID, 'customers').values[1..-1].map do |row|
   count, *rest = row
-  Array.new(count.to_i, rest)
-end.flatten(1)
+  Array.new(count.to_i, rest.reverse.join(' '))
+end.flatten
 
-Prawn::Labels.generate(File.expand_path("~/Desktop/customers.pdf"), $customers, type: 'Avery8167') do |pdf, row|
-  pdf.stroke_bounds
-  pdf.text "\n" + row.reverse.join(' '), align: :center, style: :bold
+Prawn::Labels.generate(File.expand_path("~/Desktop/customers.pdf"), $customers, type: 'Avery8167', shrink_to_fit: true) do |pdf, row|
+  pdf.text "\n" + row, align: :center, style: :bold
 end
